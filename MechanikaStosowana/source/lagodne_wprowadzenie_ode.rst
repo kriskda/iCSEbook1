@@ -179,7 +179,7 @@ W Sage możemy narysować pole wektorowe za pomocą  ``plot_vector_field.``
     sage: plt_v = plot_vector_field((f(x,y),g(x,y)),(x,-1.2,1.2),(y,-1.2,1.2),figsize=6,aspect_ratio=1)
     sage: plt_v
 
-.. figure:: lagodne_wprowadzenie_ode_media/pole_wektorowe.png
+.. figure:: lagodne_wprowadzenie_ode_media/pole_wektorowe.*
     :align: center
 
     Pole wektorowe dla liniowej funkcji wektorowej.
@@ -234,7 +234,7 @@ Wykonując tą komórkę wiele razy otrzymujemy kolejne kroki algrorytmu:
     sage: x0,y0  = x1,y1 
     sage: plt_v
 
-.. image:: MS_SS2013_lagodne_wprowadzenie_ode_media/cell_15_sage0.png
+.. image:: MS_SS2013_lagodne_wprowadzenie_ode_media/cell_15_sage0.*
     :align: center
 
 
@@ -396,7 +396,7 @@ Sprawdźmy czy to rozwiązanie zgadza się z otrzymanym metodą przybliżoną:
     sage: p2 = point(zip(ts,xt))
     sage: p1+p2
 
-.. image:: MS_SS2013_lagodne_wprowadzenie_ode_media/cell_5_sage0.png
+.. image:: MS_SS2013_lagodne_wprowadzenie_ode_media/cell_5_sage0.*
     :align: center
 
 
@@ -429,7 +429,7 @@ Dla naszego przykładu mamy użycie tej procedury wygląda w  następujący spos
     sage: print k,t
     1.00000000000000 [0.000000000000000, 0.500000000000000, 1.00000000000000, 1.50000000000000, 2.00000000000000, 2.50000000000000, 3.00000000000000, 3.50000000000000, 4.00000000000000, 4.50000000000000, 5.00000000000000]
 
-.. image:: MS_SS2013_lagodne_wprowadzenie_ode_media/cell_8_sage0.png
+.. image:: MS_SS2013_lagodne_wprowadzenie_ode_media/cell_8_sage0.*
     :align: center
 
 
@@ -521,7 +521,7 @@ Narysujmy potencjał:
 
     sage: plot(k*x^2,(x,-6,6),figsize=4)
 
-.. image:: MS_SS2013_lagodne_wprowadzenie_ode_media/cell_51_sage0.png
+.. image:: MS_SS2013_lagodne_wprowadzenie_ode_media/cell_51_sage0.*
     :align: center
 
 
@@ -592,7 +592,7 @@ Zależności od czasu, prędkości i położenia dane są przez funkcje okresowe
     sage: pv = line(zip(times,sol[:,1]),figsize=(5,2),color='red')
     sage: px+pv
 
-.. image:: MS_SS2013_lagodne_wprowadzenie_ode_media/cell_3_sage0.png
+.. image:: MS_SS2013_lagodne_wprowadzenie_ode_media/cell_3_sage0.*
     :align: center
 
 
@@ -655,7 +655,7 @@ Porównajmy zatem rozwiązanie numeryczne i analityczny dla warunku początkoweg
     sage: px = line(zip(times,sol[:,0]),figsize=(5,2))
     sage: px+plot(cos(sqrt(k)*t),(t,0,10),color='green')
 
-.. image:: MS_SS2013_lagodne_wprowadzenie_ode_media/cell_4_sage0.png
+.. image:: MS_SS2013_lagodne_wprowadzenie_ode_media/cell_4_sage0.*
     :align: center
 
 
@@ -667,7 +667,7 @@ Porównajmy zatem rozwiązanie numeryczne i analityczny dla warunku początkoweg
     sage: pv = line(zip(times,sol[:,1]),figsize=(5,2),color='red')
     sage: pv+plot(-sqrt(k)*sin(sqrt(k)*t),(t,0,10),color='green')
 
-.. image:: MS_SS2013_lagodne_wprowadzenie_ode_media/cell_31_sage0.png
+.. image:: MS_SS2013_lagodne_wprowadzenie_ode_media/cell_31_sage0.*
     :align: center
 
 

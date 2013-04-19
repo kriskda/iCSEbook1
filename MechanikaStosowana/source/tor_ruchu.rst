@@ -78,7 +78,7 @@ Ruch jednostajny po okręgu.
 
              sage: parametric_plot(r.subs(R=1),(0,2*pi),figsize=5)
 
-          .. image:: sws/MS_SS2013_tor_ruchu_media/cell_80_sage0.png
+          .. image:: sws/MS_SS2013_tor_ruchu_media/cell_80_sage0.*
                      :align: center
                      :scale: 50 %
 

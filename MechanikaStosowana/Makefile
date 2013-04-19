@@ -14,6 +14,53 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) sou
 # the i18n builder cannot share the environment and doctrees with the others
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
+
+
+SOURCEDIR     = source
+#IMAGEDIRS can be a list of directories that contain SVG files and are relative to the SOURCEDIR
+IMAGEDIRS      = lagodne_wprowadzenie_ode_media MS_SS2013_lagodne_wprowadzenie_ode_media sws/MS_SS2013_lagodne_wprowadzenie_ode_media sws/MS_SS2013_tor_ruchu_media
+
+# SVG to PDF conversion
+SVG2PDF       = inkscape
+SVG2PDF_FLAGS = -C
+
+# SVG to PNG conversion
+SVG2PNG       = inkscape
+SVG2PNG_FLAGS = -C -d=90 --export-background-opacity=\#00
+
+# Pattern rule for converting SVG to PDF
+%.pdf : %.svg
+	$(SVG2PDF) $(SVG2PDF_FLAGS) -f $< -A $@
+
+# Pattern rule for converting SVG to PNG
+%.png : %.svg
+	$(SVG2PNG) $(SVG2PNG_FLAGS) -f $< -e $@
+
+# Build a list of SVG files to convert to PDFs
+PDFs := $(foreach dir, $(IMAGEDIRS), $(patsubst %.svg,%.pdf,$(wildcard $(SOURCEDIR)/$(dir)/*.svg)))
+
+# Build a list of SVG files to convert to PNGs
+PNGs := $(foreach dir, $(IMAGEDIRS), $(patsubst %.svg,%.png,$(wildcard $(SOURCEDIR)/$(dir)/*.svg)))
+
+# Make a rule to build the PDFs
+images-pdf: $(PDFs) 
+
+# Make a rule to build the PNGs
+images-png: $(PNGs) 
+
+# Make a rule to build the images
+images: images-pdf images-png
+
+
+
+clean-pdf:
+	-rm $(PDFs)
+
+clean-png:
+	-rm $(PNGs)
+
+clean-images: clean-pdf clean-png
+
 .PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext
 
 help:
@@ -38,10 +85,10 @@ help:
 	@echo "  linkcheck  to check all external links for integrity"
 	@echo "  doctest    to run all doctests embedded in the documentation (if enabled)"
 
-clean:
+clean: clean-images
 	-rm -rf $(BUILDDIR)/*
 
-html:
+html: images-png
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
@@ -95,14 +142,14 @@ epub:
 	@echo
 	@echo "Build finished. The epub file is in $(BUILDDIR)/epub."
 
-latex:
+latex: images-pdf
 	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo
 	@echo "Build finished; the LaTeX files are in $(BUILDDIR)/latex."
 	@echo "Run \`make' in that directory to run these through (pdf)latex" \
 	      "(use \`make latexpdf' here to do that automatically)."
 
-latexpdf:
+latexpdf: images-pdf
 	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo "Running LaTeX files through pdflatex..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
